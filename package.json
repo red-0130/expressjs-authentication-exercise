@@ -1,0 +1,16 @@
+{
+  "name": "passport-local",
+  "type": "module",
+  "module": "app.ts",
+  "scripts": {
+    "dev": "bun --watch run app.ts",
+    "test": "bun --watch test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "supertest": "^7.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
