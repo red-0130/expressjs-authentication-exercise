@@ -1,22 +1,26 @@
-export interface User {
-  id: string;
-  username: string;
-  password: string;
+declare global {
+  namespace Express {
+    interface User {
+      id: string;
+      username: string;
+      password: string;
+    }
+  }
 }
 
-const users: User[] = [];
+const users: Express.User[] = [];
 
 const db = {
-  async findUserByUsername(username: string): Promise<User | null> {
+  async findUserByUsername(username: string): Promise<Express.User | null> {
     return users.find((u) => u.username === username) || null;
   },
 
-  async findUserById(id: string): Promise<User | null> {
+  async findUserById(id: string): Promise<Express.User | null> {
     return users.find((u) => u.id === id) || null;
   },
 
-  async createUser(username: string, hashedPassword: string): Promise<User> {
-    const newUser: User = { id: crypto.randomUUID(), username, password: hashedPassword };
+  async createUser(username: string, hashedPassword: string): Promise<Express.User> {
+    const newUser: Express.User = { id: crypto.randomUUID(), username, password: hashedPassword };
     users.push(newUser);
     return newUser;
   },

@@ -61,14 +61,14 @@ Work through these tasks one by one. Run `bun test` at any time to verify your w
 
 For sessions to work, Passport needs to know how to store and retrieve the user from the session cookie.
 
-- [ ] Implement `passport.serializeUser()`. It should take the authenticated user object and return _only_ the user's `id` to be stored in the cookie.
-- [ ] Implement `passport.deserializeUser()`. It should take the `id` from the cookie, use `db.findUserById(id)`, and return the full user object to be attached to `req.user`.
+- [x] Implement `passport.serializeUser()`. It should take the authenticated user object and return _only_ the user's `id` to be stored in the cookie.
+- [x] Implement `passport.deserializeUser()`. It should take the `id` from the cookie, use `db.findUserById(id)`, and return the full user object to be attached to `req.user`.
 
 ### Task 5: The Login Endpoint
 
-- [ ] Create a `POST /login` route.
-- [ ] Use `passport.authenticate('local')` as middleware for this route.
-- [ ] You can let Passport handle the response automatically, or use a custom callback, but for this task, simply ensuring a `200` status is returned upon successful authentication is enough.
+- [x] Create a `POST /login` route.
+- [x] Use `passport.authenticate('local')` as middleware for this route.
+- [x] You can let Passport handle the response automatically, or use a custom callback, but for this task, simply ensuring a `200` status is returned upon successful authentication is enough.
 
 ### Task 6: Protected Routes and Logout
 

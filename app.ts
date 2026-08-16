@@ -3,7 +3,7 @@ import { hashPassord } from "@/utils";
 import express from "express";
 import session from "express-session";
 import morgan from "morgan";
-import passport from "passport";
+import { passport } from "@/config/passport";
 
 export const app = express();
 
@@ -38,11 +38,15 @@ app.post("/register", async (req, res) => {
   const [error, passwordHash] = await hashPassord(password);
   if (error) return res.status(500).json({ error: "Unable to hash password" });
   try {
-    const newUser = await db.createUser(username, passwordHash);
+    const { password, ...newUser } = await db.createUser(username, passwordHash);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ error: "User not created" });
   }
+});
+
+app.post("/login", passport.authenticate("local"), (_, res) => {
+  res.status(200).json({ message: "You are authenticated" });
 });
 
 if (require.main === module) {
