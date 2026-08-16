@@ -36,6 +36,8 @@ app.post("/register", async (req, res) => {
   const { username, password } = req.body || { username: "", password: "" };
   if (!username) return res.status(400).json({ error: "username required" });
   if (!password) return res.status(400).json({ error: "password required" });
+  const user = await db.findUserByUsername(username);
+  if (user) return res.status(400).json({ error: "User already exist" });
   const [error, passwordHash] = await hashedPassword(password);
   if (error) return res.status(500).json({ error: "Unable to hash password" });
   try {
