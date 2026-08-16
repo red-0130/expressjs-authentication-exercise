@@ -43,11 +43,11 @@ Work through these tasks one by one. Run `bun test` at any time to verify your w
 
 ### Task 2: User Registration & Bcrypt
 
-- [ ] Create a `POST /register` route.
-- [ ] Extract `username` and `password` from the request body.
-- [ ] Use `bcrypt.hash()` to securely encrypt the password.
-- [ ] Save the user using the `db.createUser(username, hashedPassword)` function.
-- [ ] Return a `201` status code upon success.
+- [x] Create a `POST /register` route.
+- [x] Extract `username` and `password` from the request body.
+- [x] Use `bcrypt.hash()` to securely encrypt the password.
+- [x] Save the user using the `db.createUser(username, hashedPassword)` function.
+- [x] Return a `201` status code upon success.
 
 ### Task 3: Configure the Local Strategy
 
