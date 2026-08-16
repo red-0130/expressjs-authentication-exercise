@@ -1,5 +1,5 @@
 import db from "@/db";
-import { hashPassord } from "@/utils";
+import { hashedPassword } from "@/utils";
 import express from "express";
 import session from "express-session";
 import morgan from "morgan";
@@ -36,7 +36,7 @@ app.post("/register", async (req, res) => {
   const { username, password } = req.body || { username: "", password: "" };
   if (!username) return res.status(400).json({ error: "username required" });
   if (!password) return res.status(400).json({ error: "password required" });
-  const [error, passwordHash] = await hashPassord(password);
+  const [error, passwordHash] = await hashedPassword(password);
   if (error) return res.status(500).json({ error: "Unable to hash password" });
   try {
     const { password, ...newUser } = await db.createUser(username, passwordHash);
