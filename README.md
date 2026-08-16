@@ -51,11 +51,11 @@ Work through these tasks one by one. Run `bun test` at any time to verify your w
 
 ### Task 3: Configure the Local Strategy
 
-- [ ] Import `LocalStrategy` from `passport-local`.
-- [ ] Call `passport.use(new LocalStrategy(...))`
-- [ ] In the verify callback, use `db.findUserByUsername()` to locate the user.
-- [ ] If the user exists, use `bcrypt.compare()` to check if the provided password matches the hashed password in the mock database.
-- [ ] Return the `done` callback appropriately for success, failure (wrong password), and non-existent users.
+- [x] Import `LocalStrategy` from `passport-local`.
+- [x] Call `passport.use(new LocalStrategy(...))`
+- [x] In the verify callback, use `db.findUserByUsername()` to locate the user.
+- [x] If the user exists, use `bcrypt.compare()` to check if the provided password matches the hashed password in the mock database.
+- [x] Return the `done` callback appropriately for success, failure (wrong password), and non-existent users.
 
 ### Task 4: Serialization and Deserialization
 
