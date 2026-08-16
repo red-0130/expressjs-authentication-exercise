@@ -4,6 +4,7 @@ import express from "express";
 import session from "express-session";
 import morgan from "morgan";
 import { passport } from "@/config/passport";
+import { authenticated } from "@/middleware/authenticated";
 
 export const app = express();
 
@@ -47,6 +48,21 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", passport.authenticate("local"), (_, res) => {
   res.status(200).json({ message: "You are authenticated" });
+});
+
+app.get("/profile", authenticated, (req, res) => {
+  const { password, ...user } = req.user || {};
+  res.json(user);
+});
+
+app.post("/logout", (req, res) => {
+  if (!req.user) {
+    return res.status(300).json({ message: "User not logged in" });
+  }
+  req.logout((error) => {
+    if (error) return res.status(500).json({ error: "Unable to logout user" });
+    res.status(200).json({ message: "User is logged out" });
+  });
 });
 
 if (require.main === module) {

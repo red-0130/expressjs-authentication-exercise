@@ -72,7 +72,7 @@ For sessions to work, Passport needs to know how to store and retrieve the user 
 
 ### Task 6: Protected Routes and Logout
 
-- [ ] Create a `GET /profile` route.
-- [ ] In this route, check if the user is authenticated (hint: Passport adds `req.isAuthenticated()` to the request object). If they aren't, return a `401` status. If they are, return the user object (`req.user`) as JSON.
-- [ ] Create a `POST /logout` route.
-- [ ] Inside this route, invoke the `req.logout()` function. Remember that in modern versions of Passport, `req.logout()` is asynchronous and accepts a callback function to handle errors or send the response. Send a `200` status when logout is complete.
+- [x] Create a `GET /profile` route.
+- [x] In this route, check if the user is authenticated (hint: Passport adds `req.isAuthenticated()` to the request object). If they aren't, return a `401` status. If they are, return the user object (`req.user`) as JSON.
+- [x] Create a `POST /logout` route.
+- [x] Inside this route, invoke the `req.logout()` function. Remember that in modern versions of Passport, `req.logout()` is asynchronous and accepts a callback function to handle errors or send the response. Send a `200` status when logout is complete.
