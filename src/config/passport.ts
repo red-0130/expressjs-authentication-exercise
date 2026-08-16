@@ -5,15 +5,18 @@ import { Strategy as LocalStrategy } from "passport-local";
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
-    const user = await db.findUserByUsername(username);
-    if (!user) return done(null, false);
-    const [error, isMatch] = await comparePasswords(password, user.password);
-    if (error) return done(error);
-    if (!isMatch) {
-      console.log("Wrong password");
-      return done(null, false);
+    try {
+      const user = await db.findUserByUsername(username);
+      if (!user) return done(null, false);
+      const [error, isMatch] = await comparePasswords(password, user.password);
+      if (error) return done(error);
+      if (!isMatch) {
+        return done(null, false);
+      }
+      done(null, user);
+    } catch (error) {
+      done(error);
     }
-    done(null, user);
   }),
 );
 

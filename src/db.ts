@@ -1,13 +1,3 @@
-declare global {
-  namespace Express {
-    interface User {
-      id: string;
-      username: string;
-      password: string;
-    }
-  }
-}
-
 const users: Express.User[] = [];
 
 const db = {

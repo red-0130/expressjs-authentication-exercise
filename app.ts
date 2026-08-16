@@ -22,6 +22,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: SESSION_SECRET,
+    cookie: {
+      maxAge: 1000 * 60 * 60,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+    },
   }),
 );
 
@@ -53,21 +59,27 @@ app.post("/login", passport.authenticate("local"), (_, res) => {
 });
 
 app.get("/profile", authenticated, (req, res) => {
-  const { password, ...user } = req.user || {};
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  const { password, ...user } = req.user;
   res.json(user);
 });
 
 app.post("/logout", (req, res) => {
   if (!req.user) {
-    return res.status(300).json({ message: "User not logged in" });
+    return res.status(400).json({ message: "User not logged in" });
   }
   req.logout((error) => {
     if (error) return res.status(500).json({ error: "Unable to logout user" });
-    res.status(200).json({ message: "User is logged out" });
+    req.session.destroy(() => {
+      res.clearCookie("connect.sid");
+      res.status(200).json({ message: "User is logged out" });
+    });
   });
 });
 
-if (require.main === module) {
+if (import.meta.main) {
   app.listen(PORT, () => {
     console.log(`App listening on http://localhost:${PORT}`);
   });
