@@ -33,13 +33,13 @@ Work through these tasks one by one. Run `bun test` at any time to verify your w
 
 ### Task 1: Basic App Setup
 
-- [ ] Create your main application file.
+- [x] Create your main application file.
 
-  - [ ] Initialize an Express application.
-  - [ ] Apply standard middleware (`express.json()` and `express.urlencoded({ extended: true })`).
-  - [ ] Configure `express-session` with a secret and set `resave: false` and `saveUninitialized: false`.
-  - [ ] Initialize Passport (`app.use(passport.initialize())` and `app.use(passport.session())`).
-  - [ ] **Crucial:** Ensure you export your app instance (e.g., `export const app = express()`) so the test file can mount it.
+  - [x] Initialize an Express application.
+  - [x] Apply standard middleware (`express.json()` and `express.urlencoded({ extended: true })`).
+  - [x] Configure `express-session` with a secret and set `resave: false` and `saveUninitialized: false`.
+  - [x] Initialize Passport (`app.use(passport.initialize())` and `app.use(passport.session())`).
+  - [x] **Crucial:** Ensure you export your app instance (e.g., `export const app = express()`) so the test file can mount it.
 
 ### Task 2: User Registration & Bcrypt
 

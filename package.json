@@ -8,9 +8,21 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.19.0",
+    "@types/morgan": "^1.9.10",
+    "@types/passport": "^1.0.17",
+    "@types/passport-local": "^1.0.38",
     "supertest": "^7.2.2"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "morgan": "^1.11.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
   }
 }
