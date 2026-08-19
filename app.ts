@@ -11,7 +11,9 @@ export const app = express();
 const PORT = Number(process.env.PORT) || 5173;
 const SESSION_SECRET = String(process.env.SESSION_SECRET) || "session-secret-change-on-prod";
 
-app.use(morgan("short"));
+if (import.meta.main) {
+  app.use(morgan("short"));
+}
 
 app.use(express.json());
 
